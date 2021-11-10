@@ -13,11 +13,9 @@ Classify the FU results in the classes 1-5, 6-9, 10-13, 14-17, 18-21 according t
 
 This repository contains scripts and functions to map river plumes using OLCI Sentinel-3 satellite data. There are two main scripts:
 1. driver_main.py which calls the functions from 2. functions.py file. The majority of the functions used are open source based on numpy, rasterio
-and gdal libraries. However, we also use the arcpy library (ArcGIS Pro, Python 3) for clipping and resampling purposes. The following is the step by step methods conducted:
+and gdal libraries. However, we also use the arcpy library (ArcGIS Pro, Python 3) for clipping and resampling purposes. The following is the step by step method conducted:
 
-##Add diagram
-
-
+![forel_ule_method_github](https://user-images.githubusercontent.com/23084713/141150734-531c0ea1-3064-416d-9d47-2b83f80d677b.jpg)
 
 
 
@@ -31,15 +29,11 @@ and gdal libraries. However, we also use the arcpy library (ArcGIS Pro, Python 3
 
 6. 
 
-7. 
 
 
 
 ## Applications
 
-
-
-## Studies
 
 **1. ADD**
 
@@ -84,7 +78,7 @@ Lenka Fronkova (lenka.fronkova@cefas.co.uk)
 Sentinel-3 A, B data could be downloaded using the EMUMETSAT service though these links and dates:
 
 | Date    |	Description | Link |
-| ------------     |  ------------------ |
+| ------------     |  ------------------ | ------------------ |
 | 01/01/2017 - 29/11/2017     |     EUMETSAT Codarep web portal    | https://codarep.eumetsat.int/#/home |
 | 04/07/2017 - 31/12/2020  |	  EUMETSAT Service Client- Data Centre*     | Authentication - EUMETSAT - EO Portal User Registration |
 |   Data up until 1 year old    |	 EUMETSAT Coda web portal  | https://coda.eumetsat.int/ |
