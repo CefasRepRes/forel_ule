@@ -1,0 +1,69 @@
+<!--
+> gpt G:\EOData\graphs\fuGraph.xml -t G:\EOData\temp\fuOutput.dim "G:\EOData\SENTINEL3\OLCI\S3A_OL_2_WFR____20170705T113639_20170705T113939_20170705T142100_0179_019_294_1799_MAR_O_NR_002.SEN3\xfdumanifest.xml"
+-->
+<graph id="Graph">
+  <version>1.0</version>
+  <node id="Subset">
+        <operator>Subset</operator>
+        <sources>
+            <sourceProduct>${sourceProduct}</sourceProduct>
+        </sources>
+        <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+            <sourceBands></sourceBands>
+            <region></region>
+            <geoRegion>POLYGON((-5.25 52.6, -5.25 55.1, 0.5 55.1, 0.5 52.6, -5.25 52.6))</geoRegion>
+            <subSamplingX>1</subSamplingX>
+            <subSamplingY>1</subSamplingY>
+            <fullSwath>false</fullSwath>
+            <tiePointGridNames/>
+            <copyMetadata>true</copyMetadata>
+        </parameters>
+    </node>	
+  <node id="fuNode">
+      <operator>FuClassification</operator>
+      <sources>
+      <sourceProduct>Subset</sourceProduct>
+    </sources>
+      <parameters>
+          <copyAllSourceBands>false</copyAllSourceBands>
+          <inputIsIrradianceReflectance>false</inputIsIrradianceReflectance>
+          <validExpression/>
+          <reflectanceNamePattern/>
+          <instrument>OLCI</instrument>
+          <includeIntermediateResults>false</includeIntermediateResults>
+      </parameters>    
+  </node>
+  <node id="Reproject">
+    <operator>Reproject</operator>
+    <sources>
+      <sourceProduct>fuNode</sourceProduct>
+    </sources>
+    <parameters class="com.bc.ceres.binding.dom.XppDomElement">
+      <wktFile/>
+      <crs>GEOGCS[&quot;GCS_WGS_1984&quot;, &#xd;
+  DATUM[&quot;D_WGS_1984&quot;, &#xd;
+    SPHEROID[&quot;WGS_1984&quot;, 6378137.0, 298.257223563]], &#xd;
+  PRIMEM[&quot;Greenwich&quot;, 0.0], &#xd;
+  UNIT[&quot;degree&quot;, 0.017453292519943295], &#xd;
+  AXIS[&quot;Geodetic longitude&quot;, EAST], &#xd;
+  AXIS[&quot;Geodetic latitude&quot;, NORTH]]</crs>
+      <resampling>Nearest</resampling>
+      <referencePixelX/>
+      <referencePixelY/>
+      <easting/>
+      <northing/>
+      <orientation/>
+      <pixelSizeX/>
+      <pixelSizeY/>
+      <width/>
+      <height/>
+      <tileSizeX/>
+      <tileSizeY/>
+      <orthorectify>false</orthorectify>
+      <elevationModelName/>
+      <noDataValue>NaN</noDataValue>
+      <includeTiePointGrids>true</includeTiePointGrids>
+      <addDeltaBands>false</addDeltaBands>
+    </parameters>
+  </node>
+</graph>
