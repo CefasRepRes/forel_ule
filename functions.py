@@ -24,6 +24,8 @@ dataInputPath = a path to your downloaded S3 data in tar format
 def unzippingTar(year, monthsList, dataInputPath):
     import tarfile
     import os
+
+    
     
     for month in monthsList:
         #change working directory
@@ -43,31 +45,49 @@ def unzippingTar(year, monthsList, dataInputPath):
         print("Unzipping was successfully completed for year: "+year+" and month:"+month)
 
 ###############################################################################
-"""Unzip the '.zip' files. This happens when you download the data straight 
-from the EUMETSAT online portal (not the archived centre- for more information
-on the dates refere to GitHub).
+"""Unzip the '.zip' files when you use the  Sentinel downloader from 
+https://gitlab.eumetsat.int/eumetlab/cross-cutting-tools/sentinel-downloader
+which creates the format: year- month-day
 
 Arguments:
 pathData = a path to your downloaded S3 data in zip format
+year = a string with the year of the format 'Y'YYY''
 month =  a list of months  in 2 digits format eg '01' or 'mm'"""
 
 
-def unzippingZip(pathData, month):
-
+def unzippingZip_sen_d(pathData, year, month):
+    
+    import calendar
     import os
     import zipfile
-        
-    for month in months:
+    import glob
     
-        os.chdir(pathData+month+"\\")
+    #create a list of days based on a month and year
+    year_i = int(year)
+    month_i = int(month)
+    num_days_month = calendar.monthrange(year_i, month_i)[1]
+    
+    #loop and create the number of days
+    days_month =[]
+    for day in range(1, num_days_month+1):
+        days_month.append(str(day))
         
-        files =os.listdir() 
+    #change the string- fill in the zero before the single digit
+    for i in range(9):
+        days_month[i] = days_month[i].zfill(2)
         
+    for d in days_month:
+        
+        files = glob.glob(pathData+year+"/"+month+"/"+d+"\\*.zip")
+        
+        #change directory back to the month where the zipped files will be extracted
+        os.chdir(pathData+year+"/"+month+"/")
+
         
         for file in files:
             try:
                 with zipfile.ZipFile(file, 'r') as zip_ref:
-                    zip_ref.extractall(pathData+month+"\\")
+                    zip_ref.extractall()
                     print(month)
                     print(file)
             except zipfile.ReadError:
@@ -95,6 +115,7 @@ def ForelUleSnap(path, outputPath, xmlGraph, year, month):
 
     import subprocess
     import glob
+    import sys
 
     #############assign variables##############
 
