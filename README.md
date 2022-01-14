@@ -15,21 +15,25 @@ This repository contains scripts and functions to map river plumes using OLCI Se
 1. driver_main.py which calls the functions from 2. functions.py file. The majority of the functions used are open source based on numpy, rasterio
 and gdal libraries. However, we also use the arcpy library (ArcGIS Pro, Python 3) for clipping and resampling purposes. The following is the step by step method conducted:
 
-![forel_ule_method_github](https://user-images.githubusercontent.com/23084713/141150734-531c0ea1-3064-416d-9d47-2b83f80d677b.jpg)
+![forel_ule_method_github](https://user-images.githubusercontent.com/23084713/149539666-53bc368c-3497-4ea8-bb26-529b219a1e4a.jpg)
 
 
 
-1. 
+1. Download Sentinel- 3 data, depending on the time period that is needed. Please refer to the data section below.
 
-2. 
+2. Calculating Forel-Ule (FU) scale on the daily Sentinel-3 data using algorithm developed in the European Citclops project which is a part of the European Space Agency SNAP software. This was run in an automated Python 3 script using a Graph Processing Framework/Tool (https://senbox.atlassian.net/wiki/spaces/SNAP/pages/70503590/Creating+a+GPF+Graph)
 
-3. 
+3. The FU rasters were clipped and and resampled to a common grid (0.003x0.003 resolution) using arcpy library from ArcGIS (Python 3 compatible with ArcGIS Pro).
 
-4. 
+4. Coastal outliers were cleaned by removing values FU<=5, as these values correspond to open waters with a high light penetration that is not present in the coastal waters. 
+This was performed over a mask created from Coastal and Transitional Water Framework Directive Waterbodies that can be found here: https://data.gov.uk/dataset/37709cf6-054f-40d9-be4e-ff2846c73743/water-framework-directive-wfd-river-waterbodies-cycle-2 . The erroneous values present in the coastal regions most likely result from the tidal changes
+and the presence of sand banks.
 
-6. 
+5. Since the daily data contain gaps due to the presence of cloud cover, the daily FU outputs were aggregated to monthly composites using avearge from the Python numpy library.
 
+6. Dispite the monthly aggregation and the aim to conserve as much of the actual data as possible, the monthly aggregated products still contained some gaps. As such, the inverse distance interpolation from rasterio.fill library was used with ~1km search distance to fill in any gaps.
 
+7. Fu values >=10 were extracted and flagged as 1, which signified the final river plume extent.
 
 
 ## Applications
@@ -41,7 +45,7 @@ and gdal libraries. However, we also use the arcpy library (ArcGIS Pro, Python 3
 
 ## forel_ule GitHub repository 
 
-**driver_main.p** - the main driver that imports and run functions from functions.py
+**driver_main.py** - the main driver that imports and run functions from functions.py
 
 **functions.py** - all functions used for processing
 
@@ -52,7 +56,7 @@ and gdal libraries. However, we also use the arcpy library (ArcGIS Pro, Python 3
 
 ## Reference
 
-Fronkova et al., 2021 - to add
+Fronkova et al., 2022 - to add
 
 Petus et al., 2019: https://pubmed.ncbi.nlm.nih.gov/31352278/
 
@@ -75,7 +79,7 @@ Lenka Fronkova (lenka.fronkova@cefas.co.uk)
 
 ## Data
 
-Sentinel-3 A, B data could be downloaded using the EMUMETSAT service though these links and dates:
+Sentinel-3 A, B data could be downloaded using the EMUMETSAT service for the specific time period. Please note that all of the options below require and online registration:
 
 | Date    |	Description | Link |
 | ------------     |  ------------------ | ------------------ |
@@ -83,7 +87,7 @@ Sentinel-3 A, B data could be downloaded using the EMUMETSAT service though thes
 | 04/07/2017 - 31/12/2020  |	  EUMETSAT Service Client- Data Centre*     | Authentication - EUMETSAT - EO Portal User Registration |
 |   Data up until 1 year old    |	 EUMETSAT Coda web portal  | https://coda.eumetsat.int/ |
 
-*only manual donwload
+*only manual donwload from the EUMETSAT Service Client Data Centre.
 
 Possible websites for automatic download:
 https://gitlab.eumetsat.int/eumetlab/cross-cutting-tools/sentinel-downloader
@@ -97,5 +101,5 @@ This source code is licensed under the Open Government Licence v3.0. To view thi
 
 The Open Government Licence (OGL) Version 3
 
-Copyright (c) 2021 Centre for Environment Fisheries and Aquaculture Science
+Copyright (c) 2022 Centre for Environment Fisheries and Aquaculture Science
 
