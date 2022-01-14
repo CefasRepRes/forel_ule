@@ -12,8 +12,8 @@ Classify the FU results in the classes 1-5, 6-9, 10-13, 14-17, 18-21 according t
 ## Methods
 
 This repository contains scripts and functions to map river plumes using OLCI Sentinel-3 satellite data. There are two main scripts:
-1. driver_main.py which calls the functions from 2. functions.py file. The majority of the functions used are open source based on numpy, rasterio
-and gdal libraries. However, we also use the arcpy library (ArcGIS Pro, Python 3) for clipping and resampling purposes. The following is the step by step method conducted:
+**driver_main.py** which calls the functions from the **functions.py file**. The majority of the functions used are open source, including numpy, rasterio
+and gdal libraries. However, we also use the arcpy library (ArcGIS Pro) for clipping and resampling purposes. The following is the step by step method:
 
 ![forel_ule_method_github](https://user-images.githubusercontent.com/23084713/149539666-53bc368c-3497-4ea8-bb26-529b219a1e4a.jpg)
 
@@ -43,7 +43,7 @@ and the presence of sand banks.
 
 
 
-## forel_ule GitHub repository 
+## The 'forel_ule' GitHub repository files: 
 
 **driver_main.py** - the main driver that imports and run functions from functions.py
 
