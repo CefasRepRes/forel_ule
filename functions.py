@@ -115,7 +115,6 @@ def ForelUleSnap(path, outputPath, xmlGraph, year, month):
 
     import subprocess
     import glob
-    import sys
 
     #############assign variables##############
 
@@ -465,7 +464,7 @@ year = processing year 'YYYY',
 month = processing month 'mm'
 """
 
-def interpolation(dataInputPath, sea_mask, outputPath, search_distance, year, month):
+def interpolation(dataInputPath, sea_mask, outputPath, search_distance, year, month, na_val):
     import rasterio
     from rasterio import fill
     import numpy as np
@@ -503,7 +502,7 @@ def interpolation(dataInputPath, sea_mask, outputPath, search_distance, year, mo
                       outputPath = outputPath+"ag_interpolated/" , 
                       outputRasterName = "FU_"+year+"_"+month+"_mean", 
                       arrayExport=interp, 
-                      na_val=np.nan)
+                      na_val=na_val)
     
     print("Exported")
 
