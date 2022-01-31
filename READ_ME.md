@@ -51,7 +51,7 @@ and the presence of sand banks.
 
 **xmlGraph.xml** - a graph used in the batch processing using SNAP GPT functionality. It subset the scene, applies FU Classification, reprojects and exports the raster. The input is the downlaoded and unzipped S3 data containing pointing to the .xml. The graph could be run directly in the cmd terminal. The function ForelUleSnap calls the terminal and runs the graph looping thorugh all the data
 
-**READ_ME.txt** - supplementary information on the data structure and auxiliary layers that were created specifically to run the analysis in the Liverpool Bay, UK
+**supplementary_data.txt** - supplementary information on the data structure and auxiliary layers that were created specifically to run the analysis in the Liverpool Bay, UK
 
 
 ## Reference
