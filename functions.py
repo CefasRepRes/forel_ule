@@ -149,8 +149,9 @@ def ForelUleSnap(path, outputPath, xmlGraph, year, month):
 
 """Clip the area using ESRI arcpy module from ArcGIS Pro and resample so the
 rasters have the same number of columns and rows. Make sure this is run in your
-cloned ArcGIS Pro environment. For the pathMask argument, check the READ_ME
-which this repository contains.
+cloned ArcGIS Pro environment. For the pathMask argument, please check the information in
+the supplementary_data.txt
+
 
 Arguments:
 pathIn = data path to the exported geotif from ForelUleSnap
@@ -226,7 +227,7 @@ def clip( pathIn, pathOut,year, month, pathMask, cellsize, westbound, eastbound,
 ###############################################################################
 """Export numpy array as tif using an existing tif template. This function is used
 to export processed arrays in other functions. You need to create a template as
-described in READ_ME on GitHub
+described in please in the supplementary_data.txt
 
 Arguments:
 templateTif = a tiff tempalte (please check READ_ME for more info)
@@ -260,18 +261,22 @@ def exportTif(templateTif, outputPath, outputRasterName, arrayExport, na_val):
 
 """Clean coastal outliers that are most likely due to mud-flats or intertidal
 area. Firstly we remove values <= 5 in forel-ule in the area of the 
-interitdal mask. For more information how to create an intertidal mask, please
-see the READ_ME on GitHub. The same applies for the sea_mask, although this is used across
+interitdal mask. For more information how to create an intertidal mask, please check
+the supplementary_data.txt. The same applies for the sea_mask, although this is used across
 processing to align and snap rasters so they can stackedin the further steps.
 
 Arguments:
-intertidal_mask = an intertidal mask developed for Liverpool Bay (please check READ_ME for more info), 
-sea_mask_Path = a sea mask developed for Liverpool Bay (please check READ_ME for more info), 
+intertidal_mask = an intertidal mask developed for Liverpool Bay (please check the information in
+the supplementary_data.txt), 
+sea_mask_Path = a sea mask developed for Liverpool Bay (please check the information in
+the supplementary_data.txt), 
 inputPath = path with the clipped and resampled rasters from 'clip' function, 
 month = processing month in 'mm' format, 
 year = processing year 'YYYY', 
-outputPath = data path out (please check READ_ME for the proposed structure), 
-templateTif = a tiff tempalte (please check READ_ME for more info) which for 'exportTif' function
+outputPath = data path out (please check the
+the supplementary_data.txt for the proposed structure), 
+templateTif = a tiff tempalte (please check the information in
+the supplementary_data.txt) which for 'exportTif' function
 na_val = nan value, normally we use numpy.nan for na_val
 """
 def coastal_clean_Forel_Ule(intertidal_mask, sea_mask_Path, inputPath, month, year, outputPath, templateTif, na_val):
@@ -340,10 +345,11 @@ Arguments:
 month = processing month 'mm', 
 year = processing year 'YYYY', 
 inputPath = input data from 'coastal_clean_Forel_Ule' function, 
-path_out = data path out (please check READ_ME for the proposed structure), 
-templateTif = a tiff tempalte (please check READ_ME for more info) which for 'exportTif' function
+path_out = data path out (please check the information in the supplementary_data.txt for the proposed structure), 
+templateTif = a tiff tempalte (please check the information in
+the supplementary_data.txt)used for 'exportTif' function
 na_val = nan value, normally we use numpy.nan for na_val ,
-path_out_tif = data path out (please check READ_ME for the proposed structure)
+path_out_tif = data path out (please check the information in the supplementary_data.txt for the proposed structure)
 """
 
 def ag(month, year, inputPath, path_out, templateTif,na_val,path_out_tif):
@@ -457,8 +463,8 @@ be removed.
 
 Arguments:
 dataInputPath = data input from the 'ag' function, 
-sea_mask =  a sea mask developed for Liverpool Bay (please check READ_ME for more info) , 
-outputPath = data path out (please check READ_ME for the proposed structure), 
+sea_mask =  a sea mask developed for Liverpool Bay (please check the information in the supplementary_data.txt) , 
+outputPath = data path out (please check the information in the supplementary_data.txt), 
 search_distance = integer,  3 pixels erere used in Liverpool Bay= 1km
 year = processing year 'YYYY', 
 month = processing month 'mm'
@@ -513,7 +519,7 @@ as tiff
 
 Arguments:
 dataInputPath = data input from the 'interpolation' function , 
-outputPath = data path out (please check READ_ME for the proposed structure), 
+outputPath = data path out (please check the information in the supplementary_data.txt for the proposed structure), 
 year = a processing year 'YYYY', 
 month = a processing month 'mm', 
 ag  = 'Mean' #aggregation used 
