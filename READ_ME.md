@@ -1,19 +1,17 @@
 # Application of Forel-Ule to classify water in Liverpool Bay, UK
 
-This repository contains functions and explanation on the methods of applying Forel-Ule method to classify water using Sentinel-3 optical satellite.
+This repository contains functions and explanation on the methods of applying Forel-Ule (FU) method to classify ocean colour satellite product using OLCI Sentinel-3 .
 
 
 ## Introduction
 
-**ADD**
-
-Classify the FU results in the classes 1-5, 6-9, 10-13, 14-17, 18-21 according to the accepted definitions in italics below. The indigo blue to greenish blue waters (FU colour classes 1-5) corresponds to waters with high light penetration. These waters often have low nutrient levels and low production of biomass. The colour is dominated by microscopic algae (phytoplankton). The greenish blue to bluish green (FU colour classes 6-9) correspond to waters with a colour still dominated by algae, but also increased dissolved organic matter and some sediment may be present and are typical for areas towards the open sea. The greenish waters (FU colour classes 10-13) correspond to coastal waters which usually display increased nutrient and phytoplankton levels, but also contain sediment and dissolved organic material. The greenish brown to brownish green waters (FU colour classes 14-17) correspond to waters with high nutrient and phytoplankton concentrations, but also increased sediment and dissolved organic matter and are typical for near-shore areas and tidal flats. Finally, the brownish green to cola brown waters (FU colour classes 18-21) correspond to waters with an extremely high concentration of humic acids, and are typical for rivers and estuaries (URL: http://www.citclops.eu/)"
+The ocean colour can be used to provide information on the bio-physico-chemical processes of the water. The optically active constituents of the water determine its inherent optical properties (IOPs), and as such, the water’s ability to absorb, transmit, reflect or attenuate the sunlight. Historically, the ocean colour has been used to classify water into waterbodies based on the FU scale comparator. The FU scale consists of 21 values, ranging from indigo blue to brown. The colour of the water serves as a proxy of the water processes within. The indigo blue to greenish blue waters (FU colour classes 1-5) corresponds to waters with high light penetration. These waters often have low nutrient levels and low production of biomass. The colour is dominated by microscopic algae (phytoplankton). The greenish blue to bluish green (FU colour classes 6-9) correspond to waters with a colour still dominated by algae, but also increased dissolved organic matter and some sediment may be present and are typical for areas towards the open sea. The greenish waters (FU colour classes 10-13) correspond to coastal waters which usually display increased nutrient and phytoplankton levels, but also contain sediment and dissolved organic material. The greenish brown to brownish green waters (FU colour classes 14-17) correspond to waters with high nutrient and phytoplankton concentrations, but also increased sediment and dissolved organic matter and are typical for near-shore areas and tidal flats. Finally, the brownish green to cola brown waters (FU colour classes 18-21) correspond to waters with an extremely high concentration of humic acids, and are typical for rivers and estuaries (For more information please see URL: http://www.citclops.eu/)"
 
 ## Methods
 
 This repository contains scripts and functions to map river plumes using OLCI Sentinel-3 satellite data. There are two main scripts:
 **driver_main.py** which calls the functions from the **functions.py file**. The majority of the functions used are open source, including numpy, rasterio
-and gdal libraries. However, we also use the arcpy library (ArcGIS Pro) for clipping and resampling purposes. The following is the step by step method:
+and gdal libraries. However, we also use the ArcGIS arcpy library (Python 3) for clipping and resampling purposes. The following is the step by step method:
 
 ![forel_ule_method_github](https://user-images.githubusercontent.com/23084713/149539666-53bc368c-3497-4ea8-bb26-529b219a1e4a.jpg)
 
@@ -21,9 +19,9 @@ and gdal libraries. However, we also use the arcpy library (ArcGIS Pro) for clip
 
 1. Download Sentinel- 3 data, depending on the time period that is needed. Please refer to the data section below.
 
-2. Calculating Forel-Ule (FU) scale on the daily Sentinel-3 data using algorithm developed in the European Citclops project which is a part of the European Space Agency SNAP software. This was run in an automated Python 3 script using a Graph Processing Framework/Tool (https://senbox.atlassian.net/wiki/spaces/SNAP/pages/70503590/Creating+a+GPF+Graph)
+2. Calculating the FU scale using Sentinel-3 data based on the algorithm developed in the European Citclops project, which is a part of the European Space Agency SNAP software. This was run in an automated Python 3 script using a Graph Processing Framework/Tool (https://senbox.atlassian.net/wiki/spaces/SNAP/pages/70503590/Creating+a+GPF+Graph)
 
-3. The FU rasters were clipped and and resampled to a common grid (0.003x0.003 resolution) using arcpy library from ArcGIS (Python 3 compatible with ArcGIS Pro).
+3. The FU rasters were clipped and and resampled to a common grid (0.003x0.003 resolution) using arcpy library from ArcGIS (Python 3).
 
 4. Coastal outliers were cleaned by removing values FU<=5, as these values correspond to open waters with a high light penetration that is not present in the coastal waters. 
 This was performed over a mask created from Coastal and Transitional Water Framework Directive Waterbodies that can be found here: https://data.gov.uk/dataset/37709cf6-054f-40d9-be4e-ff2846c73743/water-framework-directive-wfd-river-waterbodies-cycle-2 . The erroneous values present in the coastal regions most likely result from the tidal changes
@@ -34,13 +32,6 @@ and the presence of sand banks.
 6. Dispite the monthly aggregation and the aim to conserve as much of the actual data as possible, the monthly aggregated products still contained some gaps. As such, the inverse distance interpolation from rasterio.fill library was used with ~1km search distance to fill in any gaps.
 
 7. Fu values >=10 were extracted and flagged as 1, which signified the final river plume extent.
-
-
-## Applications
-
-
-**1. ADD**
-
 
 
 ## The 'forel_ule' GitHub repository files: 
@@ -56,7 +47,7 @@ and the presence of sand banks.
 
 ## Reference
 
-Fronkova et al., 2022 - to add
+Fronkova et al., 2022 (in prep)
 
 Petus et al., 2019: https://pubmed.ncbi.nlm.nih.gov/31352278/
 
