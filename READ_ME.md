@@ -36,13 +36,13 @@ and the presence of sand banks.
 
 ## The 'forel_ule' GitHub repository files: 
 
-**driver_main.py** - the main driver that imports and run functions from functions.py
+[driver_main.py](https://github.com/CefasRepRes/forel_ule/blob/main/driver_main.py) - the main driver that imports and run functions from functions.py 
 
-**functions.py** - all functions used for processing
+[functions.py](https://github.com/CefasRepRes/forel_ule/blob/main/functions.py) - all functions used for processing
 
-**xmlGraph.xml** - a graph used in the batch processing using SNAP GPT functionality. It subset the scene, applies FU Classification, reprojects and exports the raster. The input is the downlaoded and unzipped S3 data containing pointing to the .xml. The graph could be run directly in the cmd terminal. The function ForelUleSnap calls the terminal and runs the graph looping thorugh all the data
+[xmlGraph.xml](https://github.com/CefasRepRes/forel_ule/blob/main/fuGraph.xml) - a graph used in the batch processing using SNAP GPT functionality. It subset the scene, applies FU Classification, reprojects and exports the raster. The input is the downlaoded and unzipped S3 data containing pointing to the .xml. The graph could be run directly in the cmd terminal. The function ForelUleSnap calls the terminal and runs the graph looping thorugh all the data
 
-**supplementary_data.txt** - supplementary information on the data structure and auxiliary layers that were created specifically to run the analysis in the Liverpool Bay, UK
+[supplementary_data.txt](https://github.com/CefasRepRes/forel_ule/blob/main/supplementary_data.txt) - supplementary information on the data structure and auxiliary layers that were created specifically to run the analysis in the Liverpool Bay, UK
 
 
 ## Reference
