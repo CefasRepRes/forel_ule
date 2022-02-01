@@ -1,13 +1,13 @@
-################SUPPLEMENTARY MATERIAL ON THE SCRIPTS AND DATA#################
+################SUPPLEMENTARY INFORMATION ON THE SCRIPTS AND DATA#################
 
 ########################1. DATA STRUCTURE######################################
 CREATE THE FOLLOWING DATA STRUCTURE IN ORDER TO BE COMPATABLE WITH THE SCRIPTS
-(RECOMMENDED)
+THIS IS RECOMMENDED BUT NOT NECESSARY.
 
 1.Create folders 'analysis'and 's3_data'
 
 2. In the 'analysis', create the following subfolders:
-'year' (e.g '2017') > 'coastal_cleaning' and 'fu_processing'
+'year' (e.g '2017') > 'coastal_cleaning' > 'fu_processing'
 
 3. In the 'coastal_processing' create the following subfolder:
 'months' substituted by '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'
@@ -18,33 +18,32 @@ and also 'ag', 'ag_interpolated' and 'ag_plume'
 
 5. In both 's3_fu_daily' and 's3_fu_daily_clipped' create the following subfolders:
 
-'months' subsituted by'01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'
+'months' subsituted by '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'
   
 The following steps were conducted in ArcMap 10.5 software.
 
 #####################2. AREA OF INTEREST MASK##################################
-AN AREA OF INTEREST HAD TO BE CREATED FOR LIVERPOOL BAY. THIS TIFF SERVES FOR
+AN AREA OF INTEREST HAD TO BE CREATED FOR THE LIVERPOOL BAY. THIS TIFF SERVES FOR
 SNAPPING THE RASTERS IN THE CLIPPING FUNCTION TO THE BOTTOM LEFT CORNER SO ALL
-RASTERS LIGN-UP. 
+RASTERS ALIGN. 
 
 Steps how it was created:
-1. Creating the shapefile area of interest here:~\DP434\Working_Area\Data\Forel_Ule\analysis\aoi\LB_aoi.shp
-2. Using Polygon to Raster tool to export LB_aoi.shp to LB_aoi.tif using 0.003
-resolution
+1. Create an area of interst shapefile (AOI).
+2. Using 'Polygon to Raster' tool and export the AOI using 0.003
+resolution as area_of_interest_name.tif.
 
 ########################3. SEA MASK############################################
-1. Create a fishnet using 0.003 resolution- set-up extent, environmneat setting 
-such as resolution, snapping, extent etc accorindg to LB_aoi.tif
+1. Create a fishnet.shp using 0.003 resolution. In the environments, set-up extent, and other settings 
+such as resolution, snapping, processing extent etc accorindg to area_of_interest_name.tif.
 
-2. Create a new field 'sea_mask' in the fishnet
+2. Create a new field 'sea_mask' ('short' type or in other words a short integer) in the fishnet.shp.
 
 3. Use 'Select by spatial location' to intersect the coastline shapefile
 wiht the full resolution (f) from here: https://www.ngdc.noaa.gov/mgg/shorelines/gshhs.html 
 with the fishnet. This source of the coastline is one of the highest resolution coastlines publicly available.
-However, please use the appropriate coastline fro your area of interest.
+However, please use the appropriate coastline for your area of interest.
 
-3. Create a new field in the sea_mask fishnet called 'class' ('short' type or in other words a short integer) . Use the 'Field calculator' and populate the 'class' field by 0 = land.
-This will assign 0 to the fishnet grid squares which intersect the coast.
+3. Create a new field in the sea_mask fishnet called 'class' ('short' type or in other words a short integer) . Use the 'Field calculator' and populate the 'class' field by 0 = land. This will assign 0 to the fishnet grid squares which intersect with the coast.
 
 4. Reverse the selection order and use the field calculator to populate the 'class' column in the 'sea_mask'
 by 1=water.
@@ -61,7 +60,7 @@ Wales: http://lle.gov.wales/catalogue/item/WaterFrameworkDirectiveCoastalWaterbo
 2. Create a new field called 'int_mask' (type short) in the 'sea_mask' fishnet.
 
 3. Use 'Select by spatial location' to intersect merged WFD waterbodies with the fishnet
-and use field calculator to populate the "inter_mask" with 1. This will flag the grids that intersect the fishnet as 1.
+and use field calculator to populate the 'inter_mask' with 1. This will flag the grids that intersect the fishnet as 1.
 
 4. Reverse selection and use the field calculator to populate the 'inter_mask'
 with 0.
@@ -70,12 +69,10 @@ with 0.
 
 6. Expand the intertidal mask since it might not capture all the transitional
 waters due to discrepancies in resolution between Sentinel 3 data and WFD waterbodies.
-Run 'Expand' tool on the 'intertidal_mask.tif' with number of cells = 2.
+Run 'Expand' tool on the 'intertidal_mask.tif' with the number of cells = 2.
 
-7. This mask will be used to clean the coastal areas in the process.
+This mask will be used to clean the coastal areas during the data processing.
+If you apply the scripts to an area of interest outside of the UK, you might want
+to think about what interidal processing mask might be suitable for your area.
 
-
-
-intertidal_mask="~/DP434/Working_Area/Data/Forel_Ule/analysis/cleaning_working_area/WFD_mask_expand.tif", 
-sea_mask_Path = "~/DP434/Working_Area/Data/Forel_Ule/analysis/cleaning_working_area/sea_mask_LB.tif",
 
