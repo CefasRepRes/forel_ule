@@ -14,13 +14,13 @@ import numpy as np
 
 # unzippingTar(year="2019",
 #              monthsList=["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], 
-#              dataInputPath="E:\\plume_work\\liverpool_bay\\s3_data")
+#              dataInputPath="F:\\plume_work\\sri_lanka\\s3_data")
 
 monthsList=["11"]
 
 for month in monthsList:
     
-    unzippingZip_sen_d(pathData="F:/plume_work/liverpool_bay/s3_data/",
+    unzippingZip_sen_d(pathData="F:/plume_work/sri_lanka/s3_data/",
                        year= "2021", 
                        month=month)
 
@@ -37,9 +37,9 @@ year = "2021"
 
 ##loop through the months
 for month in months:
-    ForelUleSnap(path = "F:/plume_work/liverpool_bay/s3_data",
-                 outputPath= "F:/plume_work/liverpool_bay/analysis/"+year+"/fu_processing/s3_fu_daily",
-                 xmlGraph = "F:/plume_work/liverpool_bay/analysis/scripts_lenka/plume_mapping/fuGraph.xml",
+    ForelUleSnap(path = "F:/plume_work/sri_lanka/s3_data",
+                 outputPath= "F:/plume_work/sri_lanka/analysis/"+year+"/fu_processing/s3_fu_daily",
+                 xmlGraph = "F:/plume_work/sri_lanka/analysis/scripts_lenka/plume_mapping/fuGraph.xml",
                  year= year,
                  month = month)
     
@@ -55,8 +55,8 @@ months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
 year = "2021"
 
 for month in months:
-    clip( pathIn="F:/plume_work/liverpool_bay/analysis/"+year+"/fu_processing/s3_fu_daily", 
-         pathOut="F:/plume_work/liverpool_bay/analysis/"+year+"/fu_processing/s3_fu_daily_clipped",
+    clip( pathIn="F:/plume_work/sri_lanka/analysis/"+year+"/fu_processing/s3_fu_daily", 
+         pathOut="F:/plume_work/sri_lanka/analysis/"+year+"/fu_processing/s3_fu_daily_clipped",
          year=year, 
          month=month, 
          pathMask="Z:/DP434/Working_Area/Data/Forel_Ule/analysis/aoi/LB_aoi.tif", 
@@ -80,10 +80,10 @@ for month in months:
     coastal_clean_Forel_Ule(intertidal_mask="Z:/DP434/Working_Area/Data/Forel_Ule/analysis/cleaning_working_area/WFD_mask_expand.tif", 
                             sea_mask_Path = "Z:/DP434/Working_Area/Data/Forel_Ule/analysis/cleaning_working_area/sea_mask_LB.tif",
                             year=year,
-                            inputPath="F:/plume_work/liverpool_bay/analysis/"+year+"/fu_processing/s3_fu_daily_clipped", 
+                            inputPath="F:/plume_work/sri_lanka/analysis/"+year+"/fu_processing/s3_fu_daily_clipped", 
                             month=month,                             
-                            outputPath="F:/plume_work/liverpool_bay/analysis/"+year+"/coastal_cleaning",
-                            templateTif="F:/plume_work/liverpool_bay/analysis/2020/fu_processing/s3_fu_daily_clipped/01/fu_clip_20200101_0.tif",#choose one of the forel-ule outputs as a template
+                            outputPath="F:/plume_work/sri_lanka/analysis/"+year+"/coastal_cleaning",
+                            templateTif="F:/plume_work/sri_lanka/analysis/2020/fu_processing/s3_fu_daily_clipped/01/fu_clip_20200101_0.tif",#choose one of the forel-ule outputs as a template
                             na_val=np.nan) 
 
 print("Costal cleaning was completed.")
@@ -97,10 +97,10 @@ year = "2021"
 for month in months:
     ag(month=month, 
        year=year, 
-       inputPath="F:/plume_work/liverpool_bay/analysis/"+year+"/coastal_cleaning/", 
-       path_out= "F:/plume_work/liverpool_bay/analysis/"+year+"/coastal_cleaning/figures_ag/",
-       templateTif= "F:/plume_work/liverpool_bay/analysis/2020/fu_processing/s3_fu_daily_clipped/01/fu_clip_20200101_0.tif",#choose one of the forel-ule outputs as a template
-       path_out_tif="F:/plume_work/liverpool_bay/analysis/"+year+"/coastal_cleaning/ag/",
+       inputPath="F:/plume_work/sri_lanka/analysis/"+year+"/coastal_cleaning/", 
+       path_out= "F:/plume_work/sri_lanka/analysis/"+year+"/coastal_cleaning/figures_ag/",
+       templateTif= "F:/plume_work/sri_lanka/analysis/2020/fu_processing/s3_fu_daily_clipped/01/fu_clip_20200101_0.tif",#choose one of the forel-ule outputs as a template
+       path_out_tif="F:/plume_work/sri_lanka/analysis/"+year+"/coastal_cleaning/ag/",
        na_val=np.nan)
 
 print("Aggregation completed.")
@@ -114,9 +114,9 @@ months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"
 year= "2021"
 
 for month in months:
-    interpolation(dataInputPath="F:/plume_work/liverpool_bay/analysis/"+year+"/coastal_cleaning/ag/", 
+    interpolation(dataInputPath="F:/plume_work/sri_lanka/analysis/"+year+"/coastal_cleaning/ag/", 
                   sea_mask="Z:/DP434/Working_Area/Data/Forel_Ule/analysis/cleaning_working_area/sea_mask_LB.tif", 
-                  outputPath= "F:/plume_work/liverpool_bay/analysis/"+year+"/coastal_cleaning/", 
+                  outputPath= "F:/plume_work/sri_lanka/analysis/"+year+"/coastal_cleaning/", 
                   search_distance=3, #july 2017=10
                   year=year,
                   month=month,
@@ -135,8 +135,8 @@ ag = ["mean"]
 
 for g in ag:
     for month in months:
-         plumeMapping(dataInputPath="F:/plume_work/liverpool_bay/analysis/"+year+"/coastal_cleaning/ag_interpolated/",  
-                      outputPath= "F:/plume_work/liverpool_bay/analysis/"+year+"/coastal_cleaning/ag_interpolated_plume/", 
+         plumeMapping(dataInputPath="F:/plume_work/sri_lanka/analysis/"+year+"/coastal_cleaning/ag_interpolated/",  
+                      outputPath= "F:/plume_work/sri_lanka/analysis/"+year+"/coastal_cleaning/ag_interpolated_plume/", 
                       year=year,
                       month=month,
                       ag=g,
