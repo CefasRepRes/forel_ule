@@ -6,17 +6,18 @@ Created on Tue Sep 28 14:41:17 2021
 """
 
 #import all the functions from the 'functions' script
+#from functions import *
 from functions import *
 import numpy as np
 ###############################STEP 1##########################################
 ###########unzipping of the tar files or zipped files##########################
 ###############################################################################
 
-# unzippingTar(year="2019",
+# unzippingTar(year="2021",
 #              monthsList=["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"], 
 #              dataInputPath="F:\\plume_work\\sri_lanka\\s3_data")
 
-monthsList=["11"]
+monthsList=["02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
 
 for month in monthsList:
     
@@ -32,16 +33,19 @@ for month in monthsList:
 #run Forel-Ule classfication. Make sure you check the path still gives "date"
 #in the desired format
 
-months = ["11", "12"]
+from functions import *
+import numpy as np
+
+months = ["01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12"]
 year = "2021"
 
 ##loop through the months
 for month in months:
     ForelUleSnap(path = "F:/plume_work/sri_lanka/s3_data",
                  outputPath= "F:/plume_work/sri_lanka/analysis/"+year+"/fu_processing/s3_fu_daily",
-                 xmlGraph = "F:/plume_work/sri_lanka/analysis/scripts_lenka/plume_mapping/fuGraph.xml",
+                 xmlGraph = "F:/plume_work/sri_lanka/analysis/Scripts_RB/forel_ule/fuGraph.xml",
                  year= year,
-                 month = month)
+                 month=month)
     
 
 print("Forel-Ule was calculated.")
