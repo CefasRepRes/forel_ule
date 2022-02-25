@@ -9,9 +9,9 @@ THIS IS RECOMMENDED BUT NOT NECESSARY.
 2. In the 'analysis', create the following subfolders:
 'year' (e.g '2017') > 'coastal_cleaning' > 'fu_processing'
 
-3. In the 'coastal_processing' create the following subfolder:
+3. In the 'coastal_cleaning' create the following subfolder:
 'months' substituted by '01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'
-and also 'ag', 'ag_interpolated' and 'ag_plume'
+and also 'ag', 'figures_ag' ,'ag_interpolated' and 'ag_plume'
 
 4. in 'fu_processing' create the following subfolders:
 's3_fu_daily' and 's3_fu_daily_clipped'
