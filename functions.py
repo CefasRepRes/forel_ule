@@ -155,10 +155,10 @@ the supplementary_data.txt
 
 Arguments:
 pathIn = data path to the exported geotif from ForelUleSnap
-pathOut = data path out (please check READ_ME for the proposed structure)
+pathOut = data path out (please check supplementary_data for the proposed structure)
 year = processing year 'YYYY'
 month = processing month 'mm'
-pathMask = please refer to the READ_ME on GitHub
+pathMask = please refer to the supplementary_data on GitHub
 cellsize = output cell size, for S3 data we used 0.003 0.003
 westound = the most westerly point
 eastbound = the most easterly point
@@ -230,8 +230,8 @@ to export processed arrays in other functions. You need to create a template as
 described in please in the supplementary_data.txt
 
 Arguments:
-templateTif = a tiff tempalte (please check READ_ME for more info)
-outputPath = data path out (please check READ_ME for the proposed structure)
+templateTif = a tiff tempalte (please check supplementary_data for more info)
+outputPath = data path out (please check supplementary_data for the proposed structure)
 outputRasterName = output taster name (without .tif extension) ,
 arrayExport = array that you are exporting, 
 na_val = nan value, normally we use numpy.nan for na_val
@@ -455,7 +455,7 @@ def ag(month, year, inputPath, path_out, templateTif,na_val,path_out_tif):
 ##########################INTERPOLATION########################################
 
 """Interpolation of missing values across the sea_mask (water pixels). Please
-see the READ_ME for more information about how to create a sea_mask. IDW is used
+see the supplementary_data for more information about how to create a sea_mask. IDW is used
 for the interpolation from rasterio package with the chosen search_distance. Due
 to the search distance, I extract the values that are water pixels using water
 pixels. In other words, the interpolation creates values on land too so these need to 
