@@ -68,8 +68,7 @@ with 0.
 5. Use 'Polygon to raster' tool to exort the intertidal_mask.tif using the 'inter_mask' field.
 
 6. Expand the intertidal mask since it might not capture all the transitional
-waters due to discrepancies in resolution between Sentinel 3 data and WFD waterbodies.
-Run 'Expand' tool on the 'intertidal_mask.tif' with the number of cells = 2.
+waters due to discrepancies. Run 'Expand' tool on the 'intertidal_mask.tif' with the number of cells = 2.
 
 This mask will be used to clean the coastal areas during the data processing.
 If you apply the scripts to an area of interest outside of the UK, you might want

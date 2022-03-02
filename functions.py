@@ -176,13 +176,6 @@ def clip( pathIn, pathOut,year, month, pathMask, cellsize, westbound, eastbound,
     dataList = glob.glob(pathIn+"/"+month+"/*.data")
 
     
-    ###set environment
-    arcpy.env.mask = pathMask
-    arcpy.env.overwriteOutput = True
-    arcpy.env.snapRaster = pathMask
-    
-    aoi = pathMask
-    
     #create a range of dates
     for i in range(len(dataList)):
         data = dataList[i].replace("\\", "/")
@@ -204,13 +197,20 @@ def clip( pathIn, pathOut,year, month, pathMask, cellsize, westbound, eastbound,
             
             
             print("Resampled")
+            
+            #####set environment##########
+            arcpy.env.mask = pathMask
+            arcpy.env.overwriteOutput = True
+            arcpy.env.extent = pathMask
+            arcpy.env.snapRaster = pathMask
+            
         
             # Replace a layer/table view name with a path to a dataset (which can be a layer file) or create the layer/table view within the script
             # The following inputs are layers or table views: "FU.img", "LB_aoi.tif"
             arcpy.Clip_management(in_raster=pathOut+"/"+month+"/fu_re_"+date+"_"+original_number+".tif",
                                   rectangle=westbound+" "+southbound+" "+eastbound+" "+northbound, #-4.4 53 -2.6008 54.3" 
                                   out_raster=pathOut+"/"+month+"/fu_clip_"+date+"_"+original_number+".tif", 
-                                  in_template_dataset=aoi, 
+                                  in_template_dataset=pathMask, 
                                   nodata_value="-9999", 
                                   clipping_geometry="NONE", 
                                   maintain_clipping_extent="MAINTAIN_EXTENT")
