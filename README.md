@@ -94,3 +94,8 @@ The Open Government Licence (OGL) Version 3
 
 Copyright (c) 2022 Centre for Environment Fisheries and Aquaculture Science
 
+
+## Release
+
+v1.0.0 [![DOI](https://www.zenodo.org/badge/396833308.svg)](https://www.zenodo.org/badge/latestdoi/396833308)
+
