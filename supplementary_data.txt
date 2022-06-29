@@ -4,7 +4,7 @@
 CREATE THE FOLLOWING DATA STRUCTURE IN ORDER TO BE COMPATABLE WITH THE SCRIPTS
 THIS IS RECOMMENDED BUT NOT NECESSARY.
 
-1.Create folders 'analysis'and 's3_data'
+1.Create folders 'analysis' and 's3_data'
 
 2. In the 'analysis', create the following subfolders:
 'year' (e.g '2017') > 'coastal_cleaning' and 'fu_processing'
